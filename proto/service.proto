@@ -1,0 +1,41 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package gRPC;
+
+// define request message
+message putRequest {
+  string key = 1;
+  string val = 2;
+}
+
+message getRequest {
+  string key = 1;
+}
+
+message deleteRequest {
+  string key = 1;
+}
+
+// define response message
+message putResponse {
+  string responseMsg = 1;
+}
+
+message getResponse {
+  string responseMsg = 1;
+}
+
+message deleteResponse {
+  string responseMsg = 1;
+}
+
+// define service function
+service putService {
+  rpc put(putRequest) returns (putResponse);
+}
+service getService {
+  rpc get(getRequest) returns (getResponse);
+}
+service deleteService {
+  rpc delete(deleteRequest) returns (deleteResponse);
+}

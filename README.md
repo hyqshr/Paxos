@@ -3,6 +3,13 @@
 This project implements a Java threaded and **distributed** **gRPC** key-value server application with **two-phase protocol(2PC)**. You can run as many servers as you want and 2PC will ensure all server have the same data and update/abort changes in the same time. 
 
  
+### Paxos
+
+_Paxos is an algorithm that is used to achieve consensus among a distributed set of computers that communicate via an asynchronous network._
+
+![image-20230328183841106](/Users/huang/Desktop/6650 Distributed System/project/two-phase-commit copy/assets/image-20230328183841106.png)
+
+reference: https://people.cs.rutgers.edu/~pxk/417/notes/paxos.html
 
 ### How to run this application
 
@@ -52,10 +59,6 @@ If everything go as expected you can see something like this:
 
 
 
-<img src="/Users/huang/Desktop/6650 Distributed System/project/two-phase-commit/assets/image-20230327130315962.png" alt="image-20230327130315962" style="zoom:67%;" />
-
-
-
 ### Two-Phase protocol
 
 Two-phase protocol (2PC) is a type of atomic commitment protocol (ACP). It is a distributed algorithm that coordinates all the processes that participate in a distributed atomic transaction on whether to commit or abort (roll back) the transaction.
@@ -81,5 +84,3 @@ gRPC is a RPC framework. Here, the client will use gRPC to invoke put & delete r
 - move the get/delete request service to server instead of coordinator 
 
 https://people.cs.rutgers.edu/~pxk/417/notes/paxos.html
-
-![image-20230328183841106](/Users/huang/Desktop/6650 Distributed System/project/two-phase-commit copy/assets/image-20230328183841106.png)

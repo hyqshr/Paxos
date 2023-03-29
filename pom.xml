@@ -51,18 +51,18 @@
                             <includeMavenTypes>direct</includeMavenTypes>
 
                             <inputDirectories>
-                                <include>proto</include>
+                                <include>src/proto</include>
                             </inputDirectories>
 
                             <outputTargets>
                                 <outputTarget>
                                     <type>java</type>
-                                    <outputDirectory>gRPC</outputDirectory>
+                                    <outputDirectory>src</outputDirectory>
                                 </outputTarget>
                                 <outputTarget>
                                     <type>grpc-java</type>
                                     <pluginArtifact>io.grpc:protoc-gen-grpc-java:1.15.0</pluginArtifact>
-                                    <outputDirectory>gRPC</outputDirectory>
+                                    <outputDirectory>src</outputDirectory>
                                 </outputTarget>
                             </outputTargets>
                         </configuration>

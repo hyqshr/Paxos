@@ -1,8 +1,8 @@
-# Java gRPC Distributed Server
+# Java Paxos Server
 
 This project implements a Java threaded and **distributed** **gRPC** key-value server application with **two-phase protocol(2PC)**. You can run as many servers as you want and 2PC will ensure all server have the same data and update/abort changes in the same time. 
 
-<img src="/Users/huang/Library/Application Support/typora-user-images/image-20230323210914149.png" alt="image-20230323210914149" style="zoom:67%;" /> 
+ 
 
 ### How to run this application
 
@@ -79,3 +79,7 @@ gRPC is a RPC framework. Here, the client will use gRPC to invoke put & delete r
 ### Todo
 
 - move the get/delete request service to server instead of coordinator 
+
+https://people.cs.rutgers.edu/~pxk/417/notes/paxos.html
+
+![image-20230328183841106](/Users/huang/Desktop/6650 Distributed System/project/two-phase-commit copy/assets/image-20230328183841106.png)

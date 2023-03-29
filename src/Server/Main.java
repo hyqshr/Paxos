@@ -1,38 +1,45 @@
 package Server;
 
+import io.grpc.Server;
+import io.grpc.ServerBuilder;
+
 import java.io.IOException;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import shared.Log;
 
 public class Main {
-	public static String COORDINATOR_IP = "localhost";
-	public static int COORDINATOR_PORT = 5476;
 	public static boolean VOTE_ABORT_FLAG = false;
 	public static int SLEEP_TIME = 0;
 
-	public static void main(String[] args) {
-		Map<String, String> map = new ConcurrentHashMap<>();
+	public static void main(String[] args) throws IOException, InterruptedException {
+		// start 5 server, configure more if you want
+		Server server1 = ServerBuilder.forPort(ServerRegistry.serverPort1)
+				.addService(new ServerImpl().start())
+				.build();
+		Server server2 = ServerBuilder.forPort(ServerRegistry.serverPort2)
+				.addService(new ServerImpl().start())
+				.build();
+		Server server3 = ServerBuilder.forPort(ServerRegistry.serverPort3)
+				.addService(new ServerImpl().start())
+				.build();
+		Server server4 = ServerBuilder.forPort(ServerRegistry.serverPort4)
+				.addService(new ServerImpl().start())
+				.build();
+		Server server5 = ServerBuilder.forPort(ServerRegistry.serverPort5)
+				.addService(new ServerImpl().start())
+				.build();
 
-		try {
-			// socket connect to coordinator
-			Socket socket = new Socket(COORDINATOR_IP, COORDINATOR_PORT);
-			Log log = new Log();
+		server1.start();
+		server2.start();
+		server3.start();
+		server4.start();
+		server5.start();
 
-			// join coordinator
-			Participant p = new Participant(log, socket, map);
-			System.out.println("server at " + socket.getLocalSocketAddress() + " joined the coordinator!");
-			while (true){
-				p.startParticipating();
-			}
+		server1.awaitTermination();
+		server2.awaitTermination();
+		server3.awaitTermination();
+		server4.awaitTermination();
+		server5.awaitTermination();
 
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+
 
 	}
 

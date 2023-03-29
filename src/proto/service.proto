@@ -1,0 +1,41 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package gRPC;
+
+// define service function
+service PaxosServer {
+  rpc sendPrepare(prepareMessage) returns (promise);
+  rpc sendPropose(proposeMessage) returns (commitResponse);
+  rpc get(getKey) returns (getResponse);
+  rpc put();
+}
+
+// define service message
+message prepareMessage {
+  int64 ID = 1;
+}
+
+message promise {
+  int64 largestID = 1;
+  bool accept = 2;
+}
+
+message proposeMessage {
+  int64 id = 1;
+  string key = 2;
+  string val = 3;
+  int32 method = 4;
+}
+
+message commitResponse {
+  int64 largestID = 1;
+  bool accept = 2;
+}
+
+message getKey {
+  string key = 1;
+}
+
+message getResponse {
+  string val = 1;
+}

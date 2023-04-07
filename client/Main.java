@@ -1,15 +1,23 @@
-//public class Main {
-//    public static void main(String[] args) {
-//        Client client = new Client("localhost", 8081);
-//        client.sendGrpcPutRequest("1","2");
-//        client.sendGrpcPutRequest("2","3");
-//        client.sendGrpcPutRequest("3","4");
-//        client.sendGrpcPutRequest("4","2");
-//        client.sendGrpcPutRequest("5","c");
-//        client.sendGrpcDeleteRequest("1");
-//        client.sendGrpcDeleteRequest("2");
-//        client.sendGrpcDeleteRequest("3");
-//        client.sendGrpcDeleteRequest("4");
-//        client.sendGrpcDeleteRequest("5");
-//    }
-//}
+public class Main {
+    public static void main(String[] args) throws InterruptedException {
+        Client client = new Client();
+        client.put("1","2");
+        client.put("2","3");
+        client.put("3","4");
+        client.put("5","6");
+        client.put("6","9");
+
+        // sleep to prevent racing
+        Thread.sleep(200);
+        client.getFromAllServers("1");
+        client.getFromAllServers("2");
+        client.getFromAllServers("3");
+        client.getFromAllServers("5");
+        client.getFromAllServers("6");
+        client.delete("6");
+        client.delete("1");
+        client.getFromAllServers("6");
+        client.getFromAllServers("1");
+
+    }
+}

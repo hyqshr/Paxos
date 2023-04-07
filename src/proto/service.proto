@@ -4,13 +4,23 @@ package gRPC;
 
 // define service function
 service PaxosServer {
-  rpc sendPrepare(prepareMessage) returns (promise);
-  rpc sendPropose(proposeMessage) returns (commitResponse);
-  rpc get(getKey) returns (getResponse);
-  rpc put();
+  rpc Prepare(prepareMessage) returns (promise);
+  rpc Commit(commitMessage) returns (commitResponse);
+  rpc get(getRequest) returns (Response);
+  rpc put(putRequest) returns (Response);
+  rpc delete(deleteRequest) returns (Response);
 }
 
 // define service message
+message deleteRequest{
+  string key = 1;
+}
+
+message putRequest {
+  string key = 1;
+  string val = 2;
+}
+
 message prepareMessage {
   int64 ID = 1;
 }
@@ -20,7 +30,7 @@ message promise {
   bool accept = 2;
 }
 
-message proposeMessage {
+message commitMessage {
   int64 id = 1;
   string key = 2;
   string val = 3;
@@ -32,10 +42,10 @@ message commitResponse {
   bool accept = 2;
 }
 
-message getKey {
+message getRequest {
   string key = 1;
 }
 
-message getResponse {
-  string val = 1;
+message Response {
+  string response = 1;
 }

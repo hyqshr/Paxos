@@ -7,7 +7,7 @@ This project implements a Java threaded and **distributed** **gRPC** key-value s
 
 _Paxos is an algorithm that is used to achieve consensus among a distributed set of computers that communicate via an asynchronous network._
 
-![image-20230328183841106](/Users/huang/Desktop/6650 Distributed System/project/two-phase-commit copy/assets/image-20230328183841106.png)
+![image-20230328183841106](./assets/image-20230328183841106.png)
 
 reference: https://people.cs.rutgers.edu/~pxk/417/notes/paxos.html
 
@@ -27,13 +27,13 @@ The client will send 5 put & 5 delete to coordinator, all server you running wil
 
 
 
-![image-20230327125823078](/Users/huang/Desktop/6650 Distributed System/project/two-phase-commit/assets/image-20230327125823078.png)
+![image-20230327125823078](./assets/image-20230327125823078.png)
 
 ### Run with Jar file
 
 Find the Jar file of coordinator, server and client. Allow parallel run of server, and then run coordinator, server (you can run multiple instances) and finally client.
 
-<img src="/Users/huang/Desktop/6650 Distributed System/project/two-phase-commit/assets/image-20230327130454659.png" alt="image-20230327130454659" style="zoom:67%;" />
+<img src="./assets/image-20230327130454659.png" alt="image-20230327130454659" style="zoom:67%;" />
 
 
 
